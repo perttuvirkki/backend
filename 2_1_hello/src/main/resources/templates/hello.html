@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello</title>
+</head>
+<body>
+
+<div th:if="${age} > 17">
+    <h1>Welcome <span th:text="${name}">Name</span>!</h1>
+</div>
+
+<div th:if="${age} <= 17">
+    <h1>You are too young!</h1>
+</div>
+
+</body>
+</html>
