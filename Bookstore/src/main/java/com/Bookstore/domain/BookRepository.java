@@ -1,7 +1,10 @@
-package com.Bookstore.repository;
+package com.Bookstore.domain;
 
-import com.Bookstore.model.Book;
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 public interface BookRepository extends CrudRepository<Book, Long> {
+	
+	List<Book> findByTitle(String title);
 }

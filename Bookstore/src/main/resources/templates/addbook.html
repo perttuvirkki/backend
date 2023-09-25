@@ -13,6 +13,11 @@
 	        <p>Publication Year: <input type="text" th:field="*{publicationYear}"></p>
 	        <p>ISBN: <input type="text" th:field="*{isbn}"></p>
 	        <p>Price: <input type="text" th:field="*{price}"></p>
+	        <p>Category: 
+			    <select th:field="*{category.id}">
+			        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+			    </select>
+			</p>
 	        <input type="submit" value="Submit" class="btn btn-primary">
     	</form>
     	<a href="/booklist" class="btn btn-secondary mt-2">Back to Book List</a>   	

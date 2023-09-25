@@ -1,7 +1,9 @@
 package com.Bookstore;
 
-import com.Bookstore.model.Book;
-import com.Bookstore.repository.BookRepository;
+import com.Bookstore.domain.Book;
+import com.Bookstore.domain.BookRepository;
+import com.Bookstore.domain.Category;
+import com.Bookstore.domain.CategoryRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,11 +23,16 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository repository) {
+	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
+			
+			categoryRepository.save(new Category("Fiction"));
+	        categoryRepository.save(new Category("Non-Fiction"));
+
 			log.info("saved a couple of books");
-	        repository.save(new Book("1984", "George Orwell", 1984, "ISBN1", 10.5));
-	        repository.save(new Book("Life 3.0", "Max Tegmark", 2000, "ISBN1", 10.5));
+			
+			bookRepository.save(new Book("1984", "George Orwell", 1984, "ISBN1", 10.5, categoryRepository.findByName("Fiction").get(0)));
+			bookRepository.save(new Book("Life 3.0", "Max Tegmark", 2000, "ISBN1", 10.5, categoryRepository.findByName("Non-Fiction").get(0)));
 
 		};
 	}
